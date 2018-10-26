@@ -33,8 +33,15 @@ class Counter: NSObject {
   }
   
   @objc
-  func decrement() {
+  func decrement(_ resolve: RCTPromiseResolveBlock,
+                 rejecter reject: RCTPromiseRejectBlock) {
+    guard count > 0 else {
+      let error = NSError(domain: "", code: 200, userInfo: nil)
+      reject("E_COUNT", "count cannot be negative!", error)
+      return
+    }
     count -= 1
+    resolve("decremented")
   }
   
   // Call backs

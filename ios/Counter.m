@@ -20,7 +20,10 @@
 //=====================================
 
 RCT_EXTERN_METHOD(increment)
-RCT_EXTERN_METHOD(decrement)
 RCT_EXTERN_METHOD(getCount: (RCTResponseSenderBlock) callback)
+RCT_EXTERN_METHOD(
+                  decrement: (RCTPromiseResolveBlock) resolve
+                  rejecter: (RCTPromiseRejectBlock) reject
+                  )
 
 @end

@@ -15,11 +15,25 @@ const printCount = () => {
   });
 }
 
+function increment() {
+  NativeModules.Counter.increment();
+  console.log("incremented");
+}
+function decrement() {
+  NativeModules.Counter.decrement()
+    .then(
+      res => {
+        console.log(res);
+      },
+      err => {
+        console.log(err.message, err.code);
+      });
+}
+
+increment();
 printCount();
-NativeModules.Counter.increment();
-printCount();
-NativeModules.Counter.decrement();
-printCount();
+decrement();
+decrement();
 
 const message = Platform.select({
   ios: 'Running Swift from React Native!',
