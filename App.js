@@ -7,7 +7,9 @@
  */
 
 import React, { Component } from 'react';
-import { Platform, StyleSheet, Text, View } from 'react-native';
+import { Platform, StyleSheet, Text, View, NativeModules } from 'react-native';
+
+console.log(NativeModules.Counter);
 
 const message = Platform.select({
   ios: 'Running Swift from React Native!',
