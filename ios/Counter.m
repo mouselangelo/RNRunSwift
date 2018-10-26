@@ -15,4 +15,11 @@
 // Can also use the below alternative to export Counter as RNCounter instead.
 // @interface RCT_EXTERN_REMAP_MODULE(RNCounter, Counter, NSObject)
 
+//=====================================
+// Exporting methods that can be invoked from JS
+//=====================================
+
+RCT_EXTERN_METHOD(increment)
+RCT_EXTERN_METHOD(decrement)
+
 @end

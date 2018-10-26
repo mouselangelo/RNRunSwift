@@ -21,6 +21,22 @@ import Foundation
 @objc(Counter)
 class Counter: NSObject {
   
+  private var count = 0 {
+    didSet {
+      print("Count is \(count)")
+    }
+  }
+  
+  @objc
+  func increment() {
+    count += 1
+  }
+  
+  @objc
+  func decrement() {
+    count -= 1
+  }
+  
   /*
    The function constantsToExport returns a dictionary. This becomes available as a JS object in JS / React.
    NOTE: The values are static and computed at compile time. Runtime changes aren't available in JS.

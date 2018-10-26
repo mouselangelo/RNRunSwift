@@ -11,6 +11,10 @@ import { Platform, StyleSheet, Text, View, NativeModules } from 'react-native';
 
 console.log(NativeModules.Counter);
 
+console.log(NativeModules.Counter.increment())
+console.log(NativeModules.Counter.increment())
+console.log(NativeModules.Counter.decrement())
+
 const message = Platform.select({
   ios: 'Running Swift from React Native!',
   android: 'Can\'t run Swift on Android yet!'
