@@ -7,51 +7,30 @@
  */
 
 import React, { Component } from 'react';
-import {
-  Platform,
-  StyleSheet,
-  Text,
-  View,
-  NativeModules,
-  NativeEventEmitter
-} from 'react-native';
-
-// instantiate the event emitter
-const CounterEvents = new NativeEventEmitter(NativeModules.Counter);
+import { Platform, StyleSheet, Text, View } from 'react-native';
+import Counter from './components/Counter';
 
 // subscribe to events
-CounterEvents.addListener(
+Counter.addListener(
   "onIncrement",
   res => console.log("onIncrement event", res)
 )
 
-// subscribe to event
-CounterEvents.addListener(
+Counter.addListener(
   "onDecrement",
   res => console.log("onDecrement event", res)
 )
 
-const printCount = () => {
-  NativeModules.Counter.getCount(value => {
-    console.log("count is " + value);
-  });
-}
-
 function increment() {
-  NativeModules.Counter.increment();
+  Counter.increment();
 }
 function decrement() {
-  NativeModules.Counter.decrement()
-    .then(
-      res => {
-        console.log(res);
-      },
-      err => {
-        console.log(err.message, err.code);
-      });
+  Counter.decrement()
 }
 
 increment();
+increment();
+decrement();
 decrement();
 decrement();
 
