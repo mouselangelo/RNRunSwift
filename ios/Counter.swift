@@ -19,7 +19,7 @@ import Foundation
  */
 
 @objc(Counter)
-class Counter: NSObject {
+class Counter: RCTEventEmitter {
   
   private var count = 0 {
     didSet {
@@ -30,6 +30,7 @@ class Counter: NSObject {
   @objc
   func increment() {
     count += 1
+    sendIncrementEvent()
   }
   
   @objc
@@ -42,6 +43,7 @@ class Counter: NSObject {
     }
     count -= 1
     resolve("decremented")
+    sendDecrementEvent()
   }
   
   // Call backs
@@ -56,7 +58,7 @@ class Counter: NSObject {
    NOTE: The values are static and computed at compile time. Runtime changes aren't available in JS.
   */
   @objc
-  func constantsToExport() -> [AnyHashable: Any]! {
+  override func constantsToExport() -> [AnyHashable: Any]! {
     return [
       "initialValue" : 0
     ]
@@ -69,7 +71,24 @@ class Counter: NSObject {
    false: if the class can be initialized on a background thread
   */
   @objc
-  static func requiresMainQueueSetup() -> Bool {
+  override static func requiresMainQueueSetup() -> Bool {
     return true
   }
+  
+  //====================================
+  // EVENT EMITTER
+  
+  // Return names of all supported events
+  override func supportedEvents() -> [String]! {
+    return ["onIncrement", "onDecrement"]
+  }
+  
+  private func sendIncrementEvent() {
+    sendEvent(withName: "onIncrement", body: ["count": count])
+  }
+  
+  private func sendDecrementEvent() {
+    sendEvent(withName: "onDecrement", body: ["count": count])
+  }
+  
 }
