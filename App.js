@@ -9,11 +9,17 @@
 import React, { Component } from 'react';
 import { Platform, StyleSheet, Text, View, NativeModules } from 'react-native';
 
-console.log(NativeModules.Counter);
+const printCount = () => {
+  NativeModules.Counter.getCount(value => {
+    console.log("count is " + value);
+  });
+}
 
-console.log(NativeModules.Counter.increment())
-console.log(NativeModules.Counter.increment())
-console.log(NativeModules.Counter.decrement())
+printCount();
+NativeModules.Counter.increment();
+printCount();
+NativeModules.Counter.decrement();
+printCount();
 
 const message = Platform.select({
   ios: 'Running Swift from React Native!',

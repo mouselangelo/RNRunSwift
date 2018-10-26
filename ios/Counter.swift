@@ -37,6 +37,13 @@ class Counter: NSObject {
     count -= 1
   }
   
+  // Call backs
+  @objc
+  func getCount(_ callback: RCTResponseSenderBlock) {
+    // NOTE: callback MUST be called with an Array!
+    callback([count])
+  }
+  
   /*
    The function constantsToExport returns a dictionary. This becomes available as a JS object in JS / React.
    NOTE: The values are static and computed at compile time. Runtime changes aren't available in JS.
