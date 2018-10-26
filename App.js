@@ -8,7 +8,7 @@
 
 import React, { Component } from 'react';
 import { Platform, StyleSheet, Text, View } from 'react-native';
-import Counter from './components/Counter';
+import Counter from './models/Counter';
 
 // subscribe to events
 Counter.addListener(
