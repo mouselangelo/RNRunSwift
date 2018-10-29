@@ -13,9 +13,7 @@ class Counter extends NativeEventEmitter {
         this.increment = nativeModule.increment;
         this.decrement = async function () {
             try {
-                const res = await nativeModule.decrement();
-                console.log(res);
-
+                await nativeModule.decrement();
             } catch (e) {
                 console.log(e.message, e.code);
             }
